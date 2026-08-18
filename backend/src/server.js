@@ -4,7 +4,7 @@ import { checkDBConnection } from "./config/db.config.js"
 
 const PORT = process.env.PORT || 3000;
 
-async function startServer() {
+const startServer = async () => {
     const ok = await checkDBConnection();
     if (!ok) {
         console.error("Failed to connect to database. Server will not start.");

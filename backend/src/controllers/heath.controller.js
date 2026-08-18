@@ -1,6 +1,6 @@
 import { checkDBConnection } from "../config/db.config.js";
 
-export async function healthCheck(req, res) {
+export const healthCheck = async (req, res) => {
     const dbOk = await checkDBConnection();
 
     const status = {

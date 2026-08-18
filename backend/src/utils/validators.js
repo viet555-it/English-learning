@@ -1,4 +1,4 @@
-export function validatePassword(password) {
+export const validatePassword = (password) => {
     const validLength = password.length >= 8;
     const containCharacters = /[a-zA-Z]/.test(password);
     const containDigits = /\d/.test(password);
@@ -6,7 +6,7 @@ export function validatePassword(password) {
     return validLength && containCharacters && containDigits;
 }
 
-export function validateEmail(email) {
+export const validateEmail = (email) => {
     const validFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   return validFormat;
