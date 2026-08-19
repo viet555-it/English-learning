@@ -1,13 +1,17 @@
-import { validateEmail, validatePassword } from "../services/auth.service.js";
+import { validateEmail, validatePassword } from "../utils/validators.js";
 
 export function validateRegisterInput(req, res, next) {
-    const { email, password } = req.body;
+    const { email, username, password } = req.body || {};
+
+    if (!email || !username || !password) {
+        return res.status(400).send({ error: "Missing email, username, or password!" });
+    }
 
     if (!validateEmail(email)) {
-        res.status(400).send({ error: "Invalid Email!"})
+        return res.status(400).send({ error: "Invalid Email!" });
     }
     if (!validatePassword(password)) {
-        res.status(400).send({ error: "Invalid Password!"});
+        return res.status(400).send({ error: "Invalid Password!" });
     }
 
     next();

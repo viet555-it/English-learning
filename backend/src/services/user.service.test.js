@@ -1,5 +1,5 @@
 import { describe, jest } from "@jest/globals";
-import { findByEmail, findByUsername, createAccount } from "./user.service.js";
+import { findByEmail, findByUsername, createUser } from "./user.service.js";
 import db from "../config/db.config.js";
 
 jest.mock("../config/db.config.js", () => ({
@@ -72,14 +72,14 @@ describe("test all function to query db", () => {
         });
     });
 
-    describe("createAccount", () => {
+    describe("createUser", () => {
         test("return id if user was created successfully", async () => {
             db.query.mockResolvedValue([{ insertId: 1 }, undefined]);
 
-            const result = await createAccount({
+            const result = await createUser({
                 email: "a@test.com",
                 username: "a",
-                password_hash: "hash123",
+                passwordHash: "hash123",
             });
 
             expect(db.query).toHaveBeenCalledWith(

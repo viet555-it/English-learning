@@ -14,10 +14,10 @@ export const findByUsername = async (username) => {
     return rows[0] || null;
 };
 
-export const createAccount = async ({ email, username, password_hash }) => {
+export const createUser = async ({ email, username, passwordHash }) => {
     const [result] = await db.query(
         "INSERT INTO user (email, username, password_hash) VALUES (?, ?, ?)",
-        [email, username, password_hash],
+        [email, username, passwordHash],
     );
     return { id: result.insertId };
 };

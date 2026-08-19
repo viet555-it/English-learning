@@ -24,6 +24,15 @@ describe("test validator", () => {
             expect(validatePassword("1234567A")).toBe(true);
             expect(validatePassword("12345abC")).toBe(true);
         });
+
+        test("return false if the password is 8 blank", () => {
+            expect(validatePassword("        ")).toBe(false);
+        })
+
+        test("return true if the password is 8 characters long and contains letters, numbers and special characters.", () => {
+            expect(validatePassword("123456a&*@")).toBe(true);
+            expect(validatePassword("Password123@#")).toBe(true);
+        });
     });
 
     describe("test valideEmail", () => {
